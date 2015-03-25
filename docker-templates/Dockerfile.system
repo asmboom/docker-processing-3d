@@ -38,12 +38,3 @@ RUN mkdir /root/fbx && cd /root/fbx && wget http://images.autodesk.com/adsk/file
 RUN cd /root/fbx && tar xvfz fbx20142_1_fbxsdk_linux.tar.gz && chmod +x fbx20142_1_fbxsdk_linux
 RUN cd /root/fbx && eval 'echo -e "y\nyes\nyes" | ./fbx20142_1_fbxsdk_linux ./'
 RUN cp /root/fbx/lib/gcc4/x64/release/* /usr/local/lib64/
-RUN cd /root/ && git clone git@github.com:sketchfab/osg.git
-RUN mkdir -p /root/osg/build
-RUN cd /root/osg/build && FBX_DIR=/root/fbx/ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="ccache" -DCMAKE_CXX_COMPILER_ARG1="g++" ../
-RUN cd /root/osg/build && make -j7 install
-
-RUN cd /sketchfab/tools/ && git clone git@github.com:sketchfab/osgexport.git
-
-
-RUN rm -r /root/fbx/ /root/osg/

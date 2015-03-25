@@ -1,0 +1,5 @@
+FROM sketchfab/processing3d-system
+
+MAINTAINER trigrou
+
+RUN apt-get -y install gdb

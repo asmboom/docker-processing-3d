@@ -1,0 +1,30 @@
+Docker processing 3d
+
+# Create a release processing3d images
+
+```
+        bash scripts/build_release.sh
+```
+
+
+# Developer workflow
+
+The main issue is compile time with osg, so to make it faster and not rebuild osg each time.
+There are two images used in the developer workflow. The processing3d-system used to 'cache' the deps needed by the processing tools and the processing3d images based on the processing3d-system.
+
+```
+        bash scripts/build_dev.sh
+```
+It builds the base to compile osg and install other tools. To build osg from your host directory use the script. Change the variable OSG_SOURCE_PATH
+
+```
+        bash scripts/build_dev_osg.sh
+```
+
+
+# Workflow to convert models
+
+To convert models when your docker images is done, it can be release or dev.
+```
+        docker run --rm -v YOUR_HOST_DIRECTORY:/data -t sketchfab/processing3d:latest osgconv /data/model.obj /data/result.osg
+```

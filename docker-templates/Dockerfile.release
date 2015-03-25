@@ -1,0 +1,9 @@
+RUN cd /root/ && git clone git@github.com:sketchfab/osg.git
+RUN mkdir -p /root/osg/build
+RUN cd /root/osg/build && FBX_DIR=/root/fbx/ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="ccache" -DCMAKE_CXX_COMPILER_ARG1="g++" ../
+RUN cd /root/osg/build && make -j7 install
+
+RUN cd /sketchfab/tools/ && git clone git@github.com:sketchfab/osgexport.git
+
+
+RUN rm -r /root/fbx/ /root/osg/
